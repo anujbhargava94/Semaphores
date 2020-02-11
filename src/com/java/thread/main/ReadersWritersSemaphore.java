@@ -3,6 +3,7 @@ package com.java.thread.main;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
+//OADA4P2
 public class ReadersWritersSemaphore {
 	public static void main(String[] args) {
 
@@ -95,7 +96,7 @@ class Database {
 	public void request_read() {
 		try {
 			s1.acquire();
-			while (w == 1 || ww > 0) // writers priority condition
+			if (w == 1 || ww > 0) // writers priority condition
 			{
 				wr++;
 				s1.release();
@@ -128,7 +129,7 @@ class Database {
 	public void request_write() {
 		try {
 			s1.acquire();
-			while (r > 0 || w == 1) {
+			if (r > 0 || w == 1) {
 				ww++;
 				s1.release();
 				s2_w.acquire();
